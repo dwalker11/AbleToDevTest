@@ -25,12 +25,16 @@ class SurveyController extends Controller
      */
     public function index()
     {
+        $user = \Auth::user();
         $survey = \DB::table('surveys')
             ->join('question_survey', 'surveys.id', '=', 'question_survey.survey_id')
             ->join('questions', 'questions.id', '=', 'question_survey.question_id')
             ->join('options', 'options.id', '=', 'question_survey.answer')
-            ->select('questions.text as question', 'options.text as answer')
-            ->get();
+            ->select('surveys.id as survey_id', 'questions.text as question', 'options.text as answer')
+            ->where('surveys.user_id', '=', $user->id)
+            ->get()
+            ->groupBy('survey_id')
+            ->last();
 
         return view('dashboard', ['surveyResult' => $survey]);
     }
@@ -66,6 +70,8 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
+        $user = \Auth::user();
+
         $input = $request->except(['_token']);
 
         $results = [];
@@ -75,6 +81,7 @@ class SurveyController extends Controller
         }
 
         $survey = new Survey;
+        $survey->user_id = $user->id;
         $survey->save();
         $survey->questions()->attach($results);
 

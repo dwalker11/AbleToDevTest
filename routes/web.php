@@ -13,6 +13,8 @@
 
 Route::get('/', 'SurveyController@index')->name('home');
 
+Route::get('/home', 'SurveyController@index')->name('home');
+
 Route::resource('surveys', 'SurveyController', ['only' => [
   'index', 'create', 'store'
 ]]);
