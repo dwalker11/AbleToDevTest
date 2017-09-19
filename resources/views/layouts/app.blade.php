@@ -7,7 +7,7 @@
 
     <title>AbleTo Wellness</title>
 
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -34,7 +34,7 @@
       @yield('content')
     </div>
 
-    <script src="js/app.js" type="text/javascript"></script>
+    <script src="/js/app.js" type="text/javascript"></script>
     @yield('script')
   </body>
 </html>

@@ -16,7 +16,9 @@
 
     <hr>
 
-    <form>
+    <form method="post" action="/surveys">
+      {{ csrf_field() }}
+
       <div class="row">
         <div class="col-md-12">
           <div class="panel panel-default" v-show="current == i" v-for="(question, i) in questions">
@@ -27,7 +29,7 @@
               <div>@{{ question.text }}</div>
               <div class="radio" v-for="(option, j) in question.options">
                 <label>
-                  <input type="radio" v-bind:name="'optionsRadios' + (i + 1)" v-bind:id="'optionsRadios' + (j + 1)" v-bind:value="option.id" v-on:click="answer(i)">
+                  <input type="radio" v-bind:name="'question' + (i + 1)" v-bind:id="'optionsRadios' + (j + 1)" v-bind:value="option.id" v-on:click="answer(i)">
                   @{{ option.text }}
                 </label>
               </div>
@@ -52,29 +54,7 @@
 
 @section('script')
   <script>
-    var questions = [];
-
-    questions.push({
-      id: 1,
-      text: "What did you eat for breakfast?",
-      options: [
-        {id: 1, text: "Option 1"},
-        {id: 2, text: "Option 2"},
-        {id: 3, text: "Option 3"},
-      ],
-      answered: false
-    });
-
-    questions.push({
-      id: 2,
-      text: "Do you want to go space?",
-      options: [
-        {id: 1, text: "Option 1"},
-        {id: 2, text: "Option 2"},
-        {id: 3, text: "Option 3"},
-      ],
-      answered: false
-    });
+    var questions = {!! $questions !!};
 
     var app = new Vue({
       el: '#app1',

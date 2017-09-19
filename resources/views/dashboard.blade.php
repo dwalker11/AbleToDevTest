@@ -15,10 +15,12 @@
       <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-body">
-            <div>
-              <strong>What did you eat for breakfast?</strong><br>
-              <span>Nothing</span>
-            </div>
+            @foreach($surveyResult as $result)
+              <div>
+                <strong>{{ $result->question }}</strong><br>
+                <span>{{ $result->answer }}</span>
+              </div><br>
+            @endforeach
           </div>
         </div>
       </div>
