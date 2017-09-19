@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'SurveyController@index');
 
-Route::get('/survey', function () {
-    return view('survey');
-});
+Route::resource('surveys', 'SurveyController', ['only' => [
+  'index', 'create', 'store'
+]]);
