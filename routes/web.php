@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', 'SurveyController@index');
+Route::get('/', 'SurveyController@index')->name('home');
 
 Route::resource('surveys', 'SurveyController', ['only' => [
   'index', 'create', 'store'
 ]]);
+
+Auth::routes();

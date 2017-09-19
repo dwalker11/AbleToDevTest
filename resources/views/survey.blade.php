@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container" id="app1">
+  <div class="container" id="app">
     <div class="row">
       <div class="col-md-12">
         <h1>Wellness Survey</h1>
@@ -57,7 +57,7 @@
     var questions = {!! $questions !!};
 
     var app = new Vue({
-      el: '#app1',
+      el: '#app',
       data: {
         current: 0,
         questions: questions
