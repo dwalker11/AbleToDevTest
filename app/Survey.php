@@ -10,4 +10,9 @@ class Survey extends Model
     {
         return $this->belongsToMany('App\Question');
     }
+
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
 }

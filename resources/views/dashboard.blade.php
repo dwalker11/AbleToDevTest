@@ -15,12 +15,14 @@
       <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-body">
-            @foreach($surveyResult as $result)
+            @forelse($surveyResult as $result)
               <div>
                 <strong>{{ $result->question }}</strong><br>
                 <span>{{ $result->answer }}</span>
               </div><br>
-            @endforeach
+            @empty
+              <p>No data</p>
+            @endforelse
           </div>
         </div>
       </div>

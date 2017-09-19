@@ -37,7 +37,7 @@ class SurveyController extends Controller
             ->groupBy('survey_id')
             ->last();
 
-        return view('dashboard', ['surveyResult' => $survey]);
+        return view('dashboard', ['surveyResult' => $survey ?? []]);
     }
 
     /**
